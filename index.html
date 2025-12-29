@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abdul Ajij Ansari | Senior Backend & AI Architect</title>
-    <meta name="description" content="Senior Backend Engineer specializing in Laravel, Python, AWS, and Gen-AI solutions.">
-    
+    <title>Abdul Ajij Ansari | Senior Full Stack & AI Architect</title>
+    <meta name="description" content="Senior Full Stack Engineer specializing in Laravel, Python, AWS, and Gen-AI solutions.">
+
     <!-- React & ReactDOM -->
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
@@ -46,7 +46,7 @@
                         }
                     },
                     backgroundImage: {
-                        'grid-slate': "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(203 213 225 / 0.5)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e\")",
+                        'grid-slate': "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(203 213 225 / 0.6)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e\")", // Made darker for visibility
                         'grid-dark': "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(255 255 255 / 0.05)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e\")",
                     }
                 }
@@ -93,14 +93,16 @@
             opacity: 1;
         }
         
-        /* Light Mode Shadow Pop */
+        /* Light Mode Shadow Pop & Border - Enhanced */
         .light-card-shadow {
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.08); /* Increased shadow opacity */
+            border-color: #e2e8f0; /* Explicit slate-200 border */
             transition: all 0.3s ease;
         }
         .light-card-shadow:hover {
-            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.05), 0 8px 10px -6px rgb(0 0 0 / 0.01);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.05); /* Stronger hover shadow */
             transform: translateY(-2px);
+            border-color: #cbd5e1; /* Darker border on hover */
         }
     </style>
 </head>
@@ -136,10 +138,12 @@
             ChevronRight: (props) => <Icon {...props} path='<path d="m9 18 6-6-6-6"/>' />,
             Send: (props) => <Icon {...props} path='<path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/>' />,
             BarChart3: (props) => <Icon {...props} path='<path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/>' />,
-            Globe: (props) => <Icon {...props} path='<circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><path d="M2 12h20"/>' />,
+            Globe: (props) => <Icon {...props} path='<circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><path d="M2 12h20"/>' />,
             Layers: (props) => <Icon {...props} path='<polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>' />,
             Lock: (props) => <Icon {...props} path='<rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>' />,
-            ArrowRight: (props) => <Icon {...props} path='<line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>' />
+            ArrowRight: (props) => <Icon {...props} path='<line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>' />,
+            Api: (props) => <Icon {...props} path='<path d="M18 16.98h-5.99c-1.1 0-1.95.94-2.48 1.9A4 4 0 0 1 2 17c.01-.07.03-.13.05-.2a5.96 5.96 0 0 0 1.88-1.87 11.87 11.87 0 0 0 2.65-7.42A4.5 4.5 0 0 1 12.3 5.48a3.5 3.5 0 0 1 5.92 2.3 3.5 3.5 0 0 1 1.77-1.78 3.5 3.5 0 0 1 2 5.97"/><path d="m12 12 4.29 4.3a2.5 2.5 0 1 1-3.58 3.58z"/>' />,
+            Backend: (props) => <Icon {...props} path='<rect width="8" height="8" x="3" y="3" rx="2"/><path d="M7 11v4a2 2 0 0 0 2 2h4"/><rect width="8" height="8" x="13" y="13" rx="2"/>' />
         };
 
         // --- COMPONENTS ---
@@ -481,7 +485,7 @@
                             </h1>
                             
                             <p className={`text-lg lg:text-xl mb-10 max-w-2xl mx-auto leading-relaxed ${isDark ? 'text-slate-400' : 'text-slate-600 font-medium'}`}>
-                                I am a <span className="font-semibold text-cyan-500">Senior Backend Engineer</span> specializing in high-performance APIs, database optimization (80M+ rows), and production-grade <span className="font-semibold text-cyan-500">RAG AI Solutions</span>.
+                                I am a <span className="font-semibold text-cyan-500">Senior Full Stack Engineer</span> specializing in high-performance APIs, database optimization (100M+ rows), and production-grade <span className="font-semibold text-cyan-500">RAG AI Solutions</span>.
                             </p>
                             
                             <div className="flex flex-col sm:flex-row justify-center gap-4">
@@ -497,8 +501,9 @@
                             </div>
 
                             <div className={`mt-20 pt-10 border-t flex flex-wrap justify-center gap-10 lg:gap-16 ${isDark ? 'border-white/5' : 'border-slate-200'}`}>
-                                <StatItem isDark={isDark} icon={<Icons.Database />} label="Data Optimization" value="80M+ Rows" />
+                                <StatItem isDark={isDark} icon={<Icons.Api />} label="Backend Systems" value="Scalable APIs" />
                                 <StatItem isDark={isDark} icon={<Icons.BrainCircuit />} label="AI Integration" value="RAG & LLMs" />
+                                <StatItem isDark={isDark} icon={<Icons.Database />} label="Data Optimization" value="80M+ Rows" />
                                 <StatItem isDark={isDark} icon={<Icons.Server />} label="Cloud Native" value="AWS & Docker" />
                             </div>
                         </div>
@@ -586,7 +591,7 @@
                                     date="Mar 2025 - Present"
                                     role="Sr. Associate - Software Engineer"
                                     company="Unthinkable Solutions"
-                                    desc="Leading Gen-AI initiatives. Built a RAG chatbot for internal knowledge management. Optimized MySQL queries reducing load times from 30s to 3s for 80M+ row datasets."
+                                    desc="Leading Gen-AI initiatives. Built a RAG chatbot for internal knowledge management. Optimized MySQL queries reducing load times from 30s-40s to 3s-4s for 100M+ row datasets."
                                     tags={['Leadership', 'RAG', 'MySQL Optimization']}
                                 />
                                 <TimelineBlock 
@@ -639,7 +644,7 @@
                                     type="Drewry SaaS"
                                     desc="Complex logistics pricing platform processing millions of records via AWS Athena & Glue."
                                     stack={['Laravel', 'AWS Athena', 'S3']}
-                                    link="https://pollsmaster.com"
+                                    link="https://www.drewry.co.uk/"
                                     privateRepo
                                 />
                                 <ProjectCard 
@@ -664,25 +669,51 @@
                         </div>
                     </section>
 
-                    {/* GITHUB STATS */}
+                    {/* GITHUB & LEETCODE STATS - ENHANCED */}
                     <section className={`py-16 border-y relative z-10 ${isDark ? 'bg-[#0b1121] border-white/5' : 'bg-white border-slate-200'}`}>
-                        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-8">
-                            <div className="flex items-center gap-4">
-                                <div className={`p-4 rounded-full ${isDark ? 'bg-white/5' : 'bg-slate-100 shadow-sm'}`}>
-                                    <Icons.Github size={32} />
+                        <div className="max-w-7xl mx-auto px-6">
+                            <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+                                
+                                {/* Left Side: Github Info */}
+                                <div className="flex items-center gap-4 flex-1">
+                                    <div className={`p-4 rounded-full ${isDark ? 'bg-white/5' : 'bg-slate-100 shadow-sm'}`}>
+                                        <Icons.Github size={32} />
+                                    </div>
+                                    <div>
+                                        <h3 className={`text-lg font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>Open Source & Community</h3>
+                                        <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>Passionate about sharing code and solving hard problems.</p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <h3 className={`text-lg font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>Open Source Contributor</h3>
-                                    <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>Active contributions to the community.</p>
+                                
+                                {/* Right Side: Stats Grid */}
+                                <div className="flex gap-6 flex-wrap justify-center">
+                                    <StatBox 
+                                        isDark={isDark} 
+                                        label="Contributions" 
+                                        value="500+" 
+                                        color="text-cyan-500" 
+                                        icon={<Icons.Github size={16} className="mb-2 opacity-50" />}
+                                    />
+                                    <StatBox 
+                                        isDark={isDark} 
+                                        label="LeetCode Solved" 
+                                        value="150+" 
+                                        color="text-yellow-500" 
+                                        icon={<Icons.Code2 size={16} className="mb-2 opacity-50" />}
+                                    />
                                 </div>
+
+                                <a href="https://github.com/azeiee777" target="_blank" rel="noreferrer" className={`hidden md:flex items-center gap-2 text-sm font-semibold hover:underline transition-all ${isDark ? 'text-cyan-400 hover:text-cyan-300' : 'text-cyan-600 hover:text-cyan-700'}`}>
+                                    Github Profile <Icons.ExternalLink size={16} />
+                                </a>
                             </div>
-                            <div className="flex gap-6">
-                                <StatBox isDark={isDark} label="Repositories" value="20+" color="text-cyan-500" />
-                                <StatBox isDark={isDark} label="LeetCode" value="150+" color="text-green-500" />
+                            
+                            {/* Mobile Only Link */}
+                            <div className="mt-8 text-center md:hidden">
+                                <a href="https://github.com/azeiee777" target="_blank" rel="noreferrer" className={`inline-flex items-center gap-2 text-sm font-semibold hover:underline ${isDark ? 'text-cyan-400' : 'text-cyan-600'}`}>
+                                    View Github Profile <Icons.ExternalLink size={16} />
+                                </a>
                             </div>
-                             <a href="https://github.com/azeiee777" target="_blank" rel="noreferrer" className={`flex items-center gap-2 text-sm font-semibold hover:underline ${isDark ? 'text-cyan-400' : 'text-cyan-600'}`}>
-                                Visit Profile <Icons.ExternalLink size={16} />
-                            </a>
                         </div>
                     </section>
 
@@ -833,10 +864,15 @@
             </SpotlightCard>
         );
 
-        const StatBox = ({ isDark, label, value, color }) => (
-            <div className={`px-6 py-3 rounded-xl border flex flex-col items-center ${isDark ? 'border-white/10 bg-white/5' : 'border-slate-200 bg-white'}`}>
-                <span className={`text-2xl font-bold ${color}`}>{value}</span>
-                <span className={`text-[10px] uppercase tracking-wider ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>{label}</span>
+        const StatBox = ({ isDark, label, value, color, icon }) => (
+            <div className={`flex flex-col items-center justify-center p-6 rounded-2xl border w-40 h-40 transition-all duration-300 ${
+                isDark 
+                ? 'bg-slate-900/50 border-white/5 hover:border-cyan-500/30' 
+                : 'bg-white border-slate-200 light-card-shadow'
+            }`}>
+                {icon}
+                <span className={`text-3xl font-bold mb-1 ${color}`}>{value}</span>
+                <span className={`text-[10px] font-medium uppercase tracking-wider text-center ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>{label}</span>
             </div>
         );
 
