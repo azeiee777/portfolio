@@ -46,7 +46,7 @@
                         }
                     },
                     backgroundImage: {
-                        'grid-slate': "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(203 213 225 / 0.6)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e\")", // Made darker for visibility
+                        'grid-slate': "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(203 213 225 / 0.6)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e\")", // Darker grid for visibility
                         'grid-dark': "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(255 255 255 / 0.05)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e\")",
                     }
                 }
@@ -95,14 +95,14 @@
         
         /* Light Mode Shadow Pop & Border - Enhanced */
         .light-card-shadow {
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.08); /* Increased shadow opacity */
-            border-color: #e2e8f0; /* Explicit slate-200 border */
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            border-color: #cbd5e1; /* Darker border for definition */
             transition: all 0.3s ease;
         }
         .light-card-shadow:hover {
-            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.05); /* Stronger hover shadow */
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.05);
             transform: translateY(-2px);
-            border-color: #cbd5e1; /* Darker border on hover */
+            border-color: #94a3b8; /* Even darker on hover */
         }
     </style>
 </head>
@@ -325,7 +325,7 @@
                     </nav>
 
                     <div className="mt-12 flex gap-6 animate-fade-in-up" style={{ animationDelay: '500ms' }}>
-                        <a href="https://github.com/azeiee777" target="_blank" className={`p-4 rounded-full border ${isDark ? 'border-white/10 text-white' : 'border-slate-200 text-slate-900'}`}>
+                        <a href="https://github.com/abdulajij" target="_blank" className={`p-4 rounded-full border ${isDark ? 'border-white/10 text-white' : 'border-slate-200 text-slate-900'}`}>
                             <Icons.Github size={24} />
                         </a>
                         <a href="https://linkedin.com" target="_blank" className={`p-4 rounded-full border ${isDark ? 'border-white/10 text-white' : 'border-slate-200 text-slate-900'}`}>
@@ -685,32 +685,36 @@
                                     </div>
                                 </div>
                                 
-                                {/* Right Side: Stats Grid */}
+                                {/* Right Side: Stats Grid (Clickable) */}
                                 <div className="flex gap-6 flex-wrap justify-center">
-                                    <StatBox 
-                                        isDark={isDark} 
-                                        label="Contributions" 
-                                        value="500+" 
-                                        color="text-cyan-500" 
-                                        icon={<Icons.Github size={16} className="mb-2 opacity-50" />}
-                                    />
-                                    <StatBox 
-                                        isDark={isDark} 
-                                        label="LeetCode Solved" 
-                                        value="150+" 
-                                        color="text-yellow-500" 
-                                        icon={<Icons.Code2 size={16} className="mb-2 opacity-50" />}
-                                    />
+                                    <a href="https://github.com/abdulajij" target="_blank" rel="noreferrer" className="block transform transition-transform hover:-translate-y-1">
+                                        <StatBox 
+                                            isDark={isDark} 
+                                            label="Contributions" 
+                                            value="500+" 
+                                            color="text-cyan-500" 
+                                            icon={<Icons.Github size={16} className="mb-2 opacity-50" />}
+                                        />
+                                    </a>
+                                    <a href="https://leetcode.com/u/abdulajij/" target="_blank" rel="noreferrer" className="block transform transition-transform hover:-translate-y-1">
+                                        <StatBox 
+                                            isDark={isDark} 
+                                            label="LeetCode Solved" 
+                                            value="150+" 
+                                            color="text-yellow-500" 
+                                            icon={<Icons.Code2 size={16} className="mb-2 opacity-50" />}
+                                        />
+                                    </a>
                                 </div>
 
-                                <a href="https://github.com/azeiee777" target="_blank" rel="noreferrer" className={`hidden md:flex items-center gap-2 text-sm font-semibold hover:underline transition-all ${isDark ? 'text-cyan-400 hover:text-cyan-300' : 'text-cyan-600 hover:text-cyan-700'}`}>
+                                <a href="https://github.com/abdulajij" target="_blank" rel="noreferrer" className={`hidden md:flex items-center gap-2 text-sm font-semibold hover:underline transition-all ${isDark ? 'text-cyan-400 hover:text-cyan-300' : 'text-cyan-600 hover:text-cyan-700'}`}>
                                     Github Profile <Icons.ExternalLink size={16} />
                                 </a>
                             </div>
                             
                             {/* Mobile Only Link */}
                             <div className="mt-8 text-center md:hidden">
-                                <a href="https://github.com/azeiee777" target="_blank" rel="noreferrer" className={`inline-flex items-center gap-2 text-sm font-semibold hover:underline ${isDark ? 'text-cyan-400' : 'text-cyan-600'}`}>
+                                <a href="https://github.com/abdulajij" target="_blank" rel="noreferrer" className={`inline-flex items-center gap-2 text-sm font-semibold hover:underline ${isDark ? 'text-cyan-400' : 'text-cyan-600'}`}>
                                     View Github Profile <Icons.ExternalLink size={16} />
                                 </a>
                             </div>
