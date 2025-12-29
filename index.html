@@ -1,611 +1,862 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Abdul Ajij Ansari Portfolio</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abdul Ajij Ansari | Senior Backend & AI Architect</title>
+    <meta name="description" content="Senior Backend Engineer specializing in Laravel, Python, AWS, and Gen-AI solutions.">
     
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-
-    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
-    <link rel="stylesheet" href="css/animate.css">
+    <!-- React & ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
-
-    <link rel="stylesheet" href="css/aos.css">
-
-    <link rel="stylesheet" href="css/ionicons.min.css">
+    <!-- Babel for JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     
-    <link rel="stylesheet" href="css/flaticon.css">
-    <link rel="stylesheet" href="css/icomoon.css">
-    <link rel="stylesheet" href="css/style.css">
-
-
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                        'cursor': 'cursor .75s step-end infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        cursor: {
+                            '0%, 100%': { opacity: '1' },
+                            '50%': { opacity: '0' },
+                        }
+                    },
+                    backgroundImage: {
+                        'grid-slate': "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(203 213 225 / 0.5)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e\")",
+                        'grid-dark': "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(255 255 255 / 0.05)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e\")",
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
-        /*======================================
-        //--//-->   ABOUT
-        ======================================*/
+        body { font-family: 'Inter', sans-serif; }
+        html { scroll-behavior: smooth; }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
 
-        .about-mf .box-shadow-full {
-        padding-top: 4rem;
-        padding-bottom: 4rem;
+        /* Spotlight Effect Utility */
+        .spotlight-card {
+            position: relative;
+            overflow: hidden;
         }
-
-        .about-mf .about-img {
-        margin-bottom: 2rem;
-        }
-
-        .about-mf .about-img img {
-        margin-left: 10px;
-        }
-
-
-        .skill-mf .progress {
-        /* background-color: #cde1f8; */
-        margin: .5rem 0 1.2rem 0;
-        border-radius: 0;
-        height: .7rem;
-        }
-
-        .skill-mf .progress .progress-bar {
-        height: .7rem;
-        background-color:  var(--component-color-1);
-        }
-
-
-        /* Animation styles */
-        #typing-animation {
-        position: relative;
-        font-size: 30px;
-        font-weight: bold;
-        color: rgb(255, 255, 255);
-        overflow: hidden;
-        white-space: nowrap;
-        animation: typing 3s steps(20, end) infinite;
-        }
-
-        #typing-animation:before {
-        content: "";
-        /* position: absolute; */
-        top: 0;
-        left: 0;
-        width: 0;
-        height: 100%;
-        background-color: #ccc;
-        animation: typing-cursor 0.5s ease-in-out infinite;
-        }
-
-        @keyframes typing {
-        from {
-            width: 0;
-        }
-        to {
+        .spotlight-card::before {
+            content: '';
+            position: absolute;
+            background: radial-gradient(
+                800px circle at var(--mouse-x) var(--mouse-y),
+                rgba(255, 255, 255, 0.06),
+                transparent 40%
+            );
+            z-index: 3;
+            top: 0;
+            left: 0;
             width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.5s;
+            pointer-events: none;
         }
+        .spotlight-card:hover::before {
+            opacity: 1;
         }
-
-        @keyframes typing-cursor {
-        from {
-            width: 5px;
+        
+        /* Light Mode Shadow Pop */
+        .light-card-shadow {
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+            transition: all 0.3s ease;
         }
-        to {
-            width: 0;
-        }
-        }
-
-
-        /* project image zoom effect */
-
-        .zoom-effect {
-        overflow: hidden;
-        transition: transform 0.3s ease-out;
-        }
-
-        .zoom-effect:hover {
-        transform: scale(1.1);
+        .light-card-shadow:hover {
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.05), 0 8px 10px -6px rgb(0 0 0 / 0.01);
+            transform: translateY(-2px);
         }
     </style>
-  </head>
-  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-      
-      
-    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target" id="ftco-navbar">
-        <div class="container">
-          <a class="navbar-brand" href="index.html">Abdul Ajij Ansari</a>
-          <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="oi oi-menu"></span> Menu
-          </button>
+</head>
+<body>
+    <div id="root"></div>
 
-          <div class="collapse navbar-collapse" id="ftco-nav">
-            <ul class="navbar-nav nav ml-auto">
-              <li class="nav-item"><a href="#home-section" class="nav-link"><span>Home</span></a></li>
-              <li class="nav-item"><a href="#about-section" class="nav-link"><span>About</span></a></li>
-              <li class="nav-item"><a href="#resume-section" class="nav-link"><span>Resume</span></a></li>
-              <li class="nav-item"><a href="#project-section" class="nav-link"><span>Projects</span></a></li>
-              <li class="nav-item"><a href="#contact-section" class="nav-link"><span>Contact</span></a></li>
-            </ul>
-          </div>
-        </div>
-    </nav>
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
 
-    <section id="home-section" class="hero">
-          <div class="home-slider  owl-carousel">
-           <div class="slider-item ">
-            <div class="overlay"></div>
-             <div class="container">
-              <div class="row d-md-flex no-gutters slider-text align-items-end justify-content-end" data-scrollax-parent="true">
-                <div class="one-third js-fullheight order-md-last img" style="background-image:url(images/abdul.jpg);">
-                 <div class="overlay"></div>
+        // --- ICONS (Embedded SVGs) ---
+        const Icon = ({ path, size = 24, className = "" }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+                <g dangerouslySetInnerHTML={{ __html: path }} />
+            </svg>
+        );
+
+        const Icons = {
+            Github: (props) => <Icon {...props} path='<path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/>' />,
+            Linkedin: (props) => <Icon {...props} path='<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/>' />,
+            Mail: (props) => <Icon {...props} path='<rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>' />,
+            Download: (props) => <Icon {...props} path='<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/>' />,
+            ExternalLink: (props) => <Icon {...props} path='<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/>' />,
+            Code2: (props) => <Icon {...props} path='<path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/>' />,
+            Database: (props) => <Icon {...props} path='<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>' />,
+            Server: (props) => <Icon {...props} path='<rect width="20" height="8" x="2" y="2" rx="2" ry="2"/><rect width="20" height="8" x="2" y="14" rx="2" ry="2"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/>' />,
+            BrainCircuit: (props) => <Icon {...props} path='<path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/><path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/><path d="M15 13a4.5 4.5 0 0 1-3-1.4 4.5 4.5 0 0 1-3 1.4"/><path d="M12 13v9"/><path d="M12 2v3"/>' />,
+            Terminal: (props) => <Icon {...props} path='<polyline points="4 17 10 11 4 5"/><line x1="12" x2="20" y1="19" y2="19"/>' />,
+            Cpu: (props) => <Icon {...props} path='<rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M15 2v2"/><path d="M15 20v2"/><path d="M2 15h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 9h2"/><path d="M9 2v2"/><path d="M9 20v2"/>' />,
+            Moon: (props) => <Icon {...props} path='<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>' />,
+            Sun: (props) => <Icon {...props} path='<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>' />,
+            Menu: (props) => <Icon {...props} path='<line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/>' />,
+            X: (props) => <Icon {...props} path='<path d="M18 6 6 18"/><path d="m6 6 12 12"/>' />,
+            ChevronRight: (props) => <Icon {...props} path='<path d="m9 18 6-6-6-6"/>' />,
+            Send: (props) => <Icon {...props} path='<path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/>' />,
+            BarChart3: (props) => <Icon {...props} path='<path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/>' />,
+            Globe: (props) => <Icon {...props} path='<circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><path d="M2 12h20"/>' />,
+            Layers: (props) => <Icon {...props} path='<polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>' />,
+            Lock: (props) => <Icon {...props} path='<rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>' />,
+            ArrowRight: (props) => <Icon {...props} path='<line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>' />
+        };
+
+        // --- COMPONENTS ---
+
+        // 1. Particle Background
+        const ParticleBackground = ({ isDark }) => {
+            const canvasRef = useRef(null);
+
+            useEffect(() => {
+                const canvas = canvasRef.current;
+                const ctx = canvas.getContext('2d');
+                let animationFrameId;
+
+                const resizeCanvas = () => {
+                    canvas.width = window.innerWidth;
+                    canvas.height = window.innerHeight;
+                };
+
+                window.addEventListener('resize', resizeCanvas);
+                resizeCanvas();
+
+                const particles = [];
+                const particleCount = 45; 
+
+                for (let i = 0; i < particleCount; i++) {
+                    particles.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height,
+                        vx: (Math.random() - 0.5) * 0.5,
+                        vy: (Math.random() - 0.5) * 0.5,
+                        size: Math.random() * 2 + 1,
+                    });
+                }
+
+                const draw = () => {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    
+                    particles.forEach((p, i) => {
+                        p.x += p.vx;
+                        p.y += p.vy;
+
+                        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+                        ctx.beginPath();
+                        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                        // Make particles darker in light mode for visibility
+                        ctx.fillStyle = isDark ? 'rgba(34, 211, 238, 0.3)' : 'rgba(15, 23, 42, 0.15)'; 
+                        ctx.fill();
+
+                        for (let j = i + 1; j < particles.length; j++) {
+                            const p2 = particles[j];
+                            const dx = p.x - p2.x;
+                            const dy = p.y - p2.y;
+                            const dist = Math.sqrt(dx * dx + dy * dy);
+
+                            if (dist < 150) {
+                                ctx.beginPath();
+                                ctx.strokeStyle = isDark 
+                                    ? `rgba(34, 211, 238, ${0.15 - dist/1000})` 
+                                    : `rgba(15, 23, 42, ${0.08 - dist/1000})`; // Visible in light mode
+                                ctx.lineWidth = 1;
+                                ctx.moveTo(p.x, p.y);
+                                ctx.lineTo(p2.x, p2.y);
+                                ctx.stroke();
+                            }
+                        }
+                    });
+
+                    animationFrameId = requestAnimationFrame(draw);
+                };
+
+                draw();
+
+                return () => {
+                    window.removeEventListener('resize', resizeCanvas);
+                    cancelAnimationFrame(animationFrameId);
+                };
+            }, [isDark]);
+
+            return <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full pointer-events-none z-0" />;
+        };
+
+        // 2. Spotlight Card (Enhanced for Light Mode)
+        const SpotlightCard = ({ children, className = "", isDark }) => {
+            const divRef = useRef(null);
+            const [position, setPosition] = useState({ x: 0, y: 0 });
+
+            const handleMouseMove = (e) => {
+                if (!divRef.current) return;
+                const rect = divRef.current.getBoundingClientRect();
+                setPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+            };
+
+            return (
+                <div 
+                    ref={divRef}
+                    onMouseMove={handleMouseMove}
+                    className={`spotlight-card relative rounded-2xl border transition-all duration-300 ${className} ${
+                        isDark 
+                        ? 'bg-slate-900/50 border-white/10 hover:border-cyan-500/30' 
+                        : 'bg-white border-slate-200 light-card-shadow' 
+                    }`}
+                    style={{ '--mouse-x': `${position.x}px`, '--mouse-y': `${position.y}px` }}
+                >
+                    {children}
                 </div>
-                  <div class="one-forth d-flex  align-items-center ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
-                    <div class="text">
-                        <span class="subheading">Hello!</span>
-                        <h1 class="mb-4 mt-3">I'm <span>Abdul Ajij Ansari</span></h1>
+            );
+        };
 
-                        <!-- Element to contain animated typing -->
-                        <span id="typing-animation"></span>
+        // 3. Rotating Typewriter
+        const Typewriter = ({ phrases, isDark }) => {
+            const [index, setIndex] = useState(0);
+            const [subIndex, setSubIndex] = useState(0);
+            const [reverse, setReverse] = useState(false);
+            const [blink, setBlink] = useState(true);
 
-                        <script>
+            // Blinking cursor
+            useEffect(() => {
+                const timeout2 = setInterval(() => {
+                    setBlink((prev) => !prev);
+                }, 500);
+                return () => clearInterval(timeout2);
+            }, []);
 
-                        // Initialize the typing animation
-                        const typingAnimationElement = document.getElementById('typing-animation');
+            useEffect(() => {
+                if (subIndex === phrases[index].length + 1 && !reverse) {
+                    setReverse(true);
+                    return;
+                }
 
-                        // Create an array of typing text
-                        const typingTexts = [
-                        'Web Developer  ',
-                        'App Developer  ',
-                        ];
+                if (subIndex === 0 && reverse) {
+                    setReverse(false);
+                    setIndex((prev) => (prev + 1) % phrases.length);
+                    return;
+                }
 
-                        // Create a function to display the typing animation for a given text
-                        function playTypingAnimation(text) {
-                        // Loop through each character and add it to the element
-                        for (let i = 0; i < text.length; i++) {
-                            setTimeout(() => {
-                            typingAnimationElement.textContent += text[i];
-                            }, i * 200); // Increase the delay to slow down the typing animation
-                        }
+                const timeout = setTimeout(() => {
+                    setSubIndex((prev) => prev + (reverse ? -1 : 1));
+                }, Math.max(reverse ? 75 : subIndex === phrases[index].length ? 2000 : 150, parseInt(Math.random() * 350)));
 
-                        // Once the animation is complete, reset the text and start over
-                        setTimeout(() => {
-                            typingAnimationElement.textContent = '';
-                            playTypingAnimation(typingTexts[(typingTexts.indexOf(text) + 1) % typingTexts.length]);
-                        }, text.length * 200);
-                        }
+                return () => clearTimeout(timeout);
+            }, [subIndex, index, reverse, phrases]);
 
-                        // Start the typing animation loop
-                        playTypingAnimation(typingTexts[0]);
+            return (
+                <span className={`${isDark ? 'text-cyan-400' : 'text-cyan-600'} font-mono`}>
+                    {`${phrases[index].substring(0, subIndex)}${blink ? "|" : " "}`}
+                </span>
+            );
+        };
 
-                        </script>
+        // 4. Immersive Mobile Menu
+        const MobileMenu = ({ isOpen, setIsOpen, isDark, scrollTo }) => {
+            if (!isOpen) return null;
 
-                        <br>
-                        <br>
-                        <h2>Associate software engineer</h2>
-                        <p><a href="https://www.youtube.com/@azeiee" class="btn btn-primary py-3 px-4">YouTube</a> 
-                            <a href="https://github.com/azeiee777" class="btn btn-white btn-outline-white py-3 px-4">My works</a></p>
+            return (
+                <div className={`fixed inset-0 z-[60] flex flex-col justify-center items-center backdrop-blur-xl transition-all duration-300 ${
+                    isDark ? 'bg-slate-950/95' : 'bg-white/95'
+                }`}>
+                    {/* Close Button */}
+                    <button 
+                        onClick={() => setIsOpen(false)} 
+                        className={`absolute top-6 right-6 p-2 rounded-full border ${isDark ? 'border-white/10 text-white' : 'border-slate-200 text-slate-900'}`}
+                    >
+                        <Icons.X size={32} />
+                    </button>
+
+                    <nav className="flex flex-col items-center gap-8 text-center">
+                        {['Home', 'About', 'Experience', 'Projects', 'Contact'].map((item, idx) => (
+                            <button
+                                key={item}
+                                onClick={() => scrollTo(item.toLowerCase())}
+                                style={{ animationDelay: `${idx * 100}ms` }}
+                                className={`text-4xl font-bold animate-fade-in-up ${isDark ? 'text-white hover:text-cyan-400' : 'text-slate-900 hover:text-cyan-600'}`}
+                            >
+                                {item}
+                            </button>
+                        ))}
+                    </nav>
+
+                    <div className="mt-12 flex gap-6 animate-fade-in-up" style={{ animationDelay: '500ms' }}>
+                        <a href="https://github.com/abdulajij" target="_blank" className={`p-4 rounded-full border ${isDark ? 'border-white/10 text-white' : 'border-slate-200 text-slate-900'}`}>
+                            <Icons.Github size={24} />
+                        </a>
+                        <a href="https://linkedin.com" target="_blank" className={`p-4 rounded-full border ${isDark ? 'border-white/10 text-white' : 'border-slate-200 text-slate-900'}`}>
+                            <Icons.Linkedin size={24} />
+                        </a>
+                        <a href="mailto:ajij.bgt@gmail.com" className={`p-4 rounded-full border ${isDark ? 'border-white/10 text-white' : 'border-slate-200 text-slate-900'}`}>
+                            <Icons.Mail size={24} />
+                        </a>
                     </div>
-                  </div>
                 </div>
-            </div>
-          </div>
-        </div>
-    </section>
+            );
+        };
 
-    <section class="ftco-about img ftco-section ftco-no-pb" id="about-section">
-        <div class="container">
-            <div class="row">
-                <div class="row d-flex align-items-stretch">
-                    <div class="col-md-6 col-lg-5 d-flex">
-                        <div class="img-about img d-flex align-items-stretch">
-                            <div class="overlay">
-                                <div class="row">
-                                    <div class="col-sm-6 col-md-5">
-                                      <div class="about-img">
-                                        <img src="images/about-me.png" class="img-fluid rounded b-shadow-a" alt="">
-                                      </div>
-                                    </div>
-                                    <!-- Details next to profile image -->
-                                    <div class="col-sm-6 col-md-7">
-                                      <div class="about-info">
-                                        <p><span class="title-s">Name: </span> <span>Abdul Ajij Ansari</span></p>
-                                        <p><span class="title-s">Job Role: </span> <span>software engineer</span></p>
-                                        <p><span class="title-s">Experience: </span> <span>4 Years 6 Months</span></p>
-                                        <p><span class="title-s">Address: </span> <span>Gurugram, India</span></p>
-                                      </div>
-                                    </div>
-                                  </div>
+        // --- MAIN APP ---
+        const Portfolio = () => {
+            const [isDark, setIsDark] = useState(true);
+            const [isMenuOpen, setIsMenuOpen] = useState(false);
+            const [scrolled, setScrolled] = useState(false);
+            const [activeSection, setActiveSection] = useState('home');
+            const [scrollProgress, setScrollProgress] = useState(0);
+            
+            // Form State
+            const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
 
-                                <div class="skill-mf">
-                                    <p class="title-s">Skills</p>
-                                    <span>PYTHON</span> <span class="pull-right">85%</span>
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0"
-                                            aria-valuemax="100"></div>
-                                    </div>
-                                    
-                                    <span>Django</span> <span class="pull-right">90%</span>
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0"
-                                            aria-valuemax="100"></div>
-                                    </div>
+            useEffect(() => {
+                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    setIsDark(true);
+                }
+            }, []);
 
-                                    <span>Laravel</span> <span class="pull-right">95%</span>
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" style="width: 95%;" aria-valuenow="95" aria-valuemin="0"
-                                            aria-valuemax="100"></div>
+            const toggleTheme = () => setIsDark(!isDark);
+
+            useEffect(() => {
+                const handleScroll = () => {
+                    setScrolled(window.scrollY > 50);
+                    
+                    // Progress Bar
+                    const totalScroll = document.documentElement.scrollTop;
+                    const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                    const scroll = `${totalScroll / windowHeight}`;
+                    setScrollProgress(Number(scroll));
+
+                    const sections = ['home', 'about', 'services', 'experience', 'projects', 'contact'];
+                    const scrollPosition = window.scrollY + 200;
+
+                    for (const section of sections) {
+                        const element = document.getElementById(section);
+                        if (element && element.offsetTop <= scrollPosition && (element.offsetTop + element.offsetHeight) > scrollPosition) {
+                            setActiveSection(section);
+                        }
+                    }
+                };
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+
+            const scrollTo = (id) => {
+                setIsMenuOpen(false);
+                const element = document.getElementById(id);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                }
+            };
+
+            const handleInputChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
+            const handleSendMessage = (e) => {
+                e.preventDefault();
+                window.location.href = `mailto:ajij.bgt@gmail.com?subject=${encodeURIComponent(formData.subject)}&body=Name: ${formData.name}%0D%0AEmail: ${formData.email}%0D%0A%0D%0AMessage:%0D%0A${formData.message}`;
+            };
+
+            return (
+                <div className={`min-h-screen transition-colors duration-500 ${isDark ? 'bg-[#020617] text-slate-200' : 'bg-slate-50 text-slate-900'} font-sans selection:bg-cyan-500/30 selection:text-cyan-700`}>
+                    
+                    {/* Scroll Progress Bar */}
+                    <div className="fixed top-0 left-0 h-1 bg-gradient-to-r from-cyan-500 to-blue-600 z-[100]" style={{ width: `${scrollProgress * 100}%` }}></div>
+
+                    {/* Particle Background */}
+                    <ParticleBackground isDark={isDark} />
+
+                    {/* Mobile Menu Overlay */}
+                    <MobileMenu isOpen={isMenuOpen} setIsOpen={setIsMenuOpen} isDark={isDark} scrollTo={scrollTo} />
+
+                    {/* Navbar */}
+                    <div className="fixed top-6 left-0 w-full z-50 px-4 flex justify-center">
+                        <nav className={`w-full max-w-5xl rounded-full px-6 py-3 transition-all duration-300 flex items-center justify-between ${
+                            scrolled 
+                                ? isDark ? 'bg-slate-900/80 border border-white/10 shadow-lg shadow-black/20 backdrop-blur-xl' : 'bg-white/90 border border-slate-200 shadow-lg backdrop-blur-xl'
+                                : 'bg-transparent'
+                        }`}>
+                            <div className="flex items-center gap-2 cursor-pointer" onClick={() => scrollTo('home')}>
+                                <div className="w-9 h-9 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-cyan-500/20">
+                                    A
+                                </div>
+                                <span className={`font-bold text-lg tracking-tight ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                                    Abdul<span className="text-cyan-500">Ajij</span>
+                                </span>
+                            </div>
+
+                            <div className="hidden md:flex items-center gap-1 bg-transparent p-1 rounded-full">
+                                {['Home', 'About', 'Experience', 'Projects'].map((item) => (
+                                    <button
+                                        key={item}
+                                        onClick={() => scrollTo(item.toLowerCase())}
+                                        className={`px-4 py-1.5 text-sm font-medium rounded-full transition-all duration-300 ${
+                                            activeSection === item.toLowerCase() 
+                                                ? isDark ? 'bg-white/10 text-white shadow-sm' : 'bg-slate-100 text-slate-900 shadow-sm'
+                                                : isDark ? 'text-slate-400 hover:text-white hover:bg-white/5' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+                                        }`}
+                                    >
+                                        {item}
+                                    </button>
+                                ))}
+                            </div>
+
+                            <div className="hidden md:flex items-center gap-3">
+                                <button onClick={toggleTheme} className={`p-2 rounded-full transition-all ${isDark ? 'text-slate-400 hover:text-yellow-400 hover:bg-white/5' : 'text-slate-500 hover:text-yellow-600 hover:bg-slate-100'}`}>
+                                    {isDark ? <Icons.Sun size={18} /> : <Icons.Moon size={18} />}
+                                </button>
+                                <button onClick={() => scrollTo('contact')} className="px-5 py-2 rounded-full bg-cyan-600 hover:bg-cyan-500 text-white text-sm font-medium transition-all shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 transform hover:-translate-y-0.5">
+                                    Let's Talk
+                                </button>
+                            </div>
+
+                            <div className="md:hidden flex items-center gap-3">
+                                <button onClick={toggleTheme} className={isDark ? 'text-yellow-400' : 'text-slate-700'}>
+                                    {isDark ? <Icons.Sun size={20} /> : <Icons.Moon size={20} />}
+                                </button>
+                                <button onClick={() => setIsMenuOpen(!isMenuOpen)} className={isDark ? 'text-white' : 'text-slate-900'}>
+                                    {isMenuOpen ? <Icons.X size={24} /> : <Icons.Menu size={24} />}
+                                </button>
+                            </div>
+                        </nav>
+                    </div>
+
+                    {/* HERO SECTION */}
+                    <section id="home" className={`relative pt-40 pb-20 lg:pt-52 lg:pb-32 px-6 flex flex-col items-center text-center z-10 transition-colors duration-500 ${isDark ? 'bg-transparent' : 'bg-slate-50'}`}>
+                        {/* Light Mode Grid Pattern */}
+                        {!isDark && <div className="absolute inset-0 bg-grid-slate opacity-[0.4] pointer-events-none"></div>}
+                        
+                        <div className="max-w-4xl mx-auto animate-fade-in-up relative z-10">
+                            <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold mb-8 border backdrop-blur-sm ${
+                                isDark ? 'bg-cyan-500/10 border-cyan-500/20 text-cyan-300' : 'bg-white border-cyan-200 text-cyan-700 shadow-sm'
+                            }`}>
+                                <span className="relative flex h-2 w-2">
+                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                                    <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+                                </span>
+                                Available for new opportunities
+                            </div>
+                            
+                            <h1 className={`text-5xl lg:text-7xl font-bold tracking-tight mb-8 leading-[1.1] ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                                Building <br />
+                                <Typewriter 
+                                    isDark={isDark}
+                                    phrases={["Intelligent AI Solutions", "Scalable Backend Systems", "Enterprise Analytics"]} 
+                                />
+                            </h1>
+                            
+                            <p className={`text-lg lg:text-xl mb-10 max-w-2xl mx-auto leading-relaxed ${isDark ? 'text-slate-400' : 'text-slate-600 font-medium'}`}>
+                                I am a <span className="font-semibold text-cyan-500">Senior Backend Engineer</span> specializing in high-performance APIs, database optimization (80M+ rows), and production-grade <span className="font-semibold text-cyan-500">RAG AI Solutions</span>.
+                            </p>
+                            
+                            <div className="flex flex-col sm:flex-row justify-center gap-4">
+                                <button onClick={() => scrollTo('projects')} className="px-8 py-4 rounded-full bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold text-sm transition-all shadow-lg shadow-cyan-500/30 hover:shadow-cyan-500/50 hover:-translate-y-1">
+                                    View Selected Works
+                                </button>
+                                <a href="/Abdul_Ajij_resume_a_25.pdf" download className={`px-8 py-4 rounded-full font-bold text-sm border flex items-center justify-center gap-2 transition-all hover:-translate-y-1 ${
+                                    isDark ? 'border-white/10 bg-white/5 hover:bg-white/10 text-white' : 'border-slate-300 bg-white hover:bg-slate-50 text-slate-900 shadow-sm'
+                                }`}>
+                                    <Icons.Download size={18} />
+                                    Download Resume
+                                </a>
+                            </div>
+
+                            <div className={`mt-20 pt-10 border-t flex flex-wrap justify-center gap-10 lg:gap-16 ${isDark ? 'border-white/5' : 'border-slate-200'}`}>
+                                <StatItem isDark={isDark} icon={<Icons.Database />} label="Data Optimization" value="80M+ Rows" />
+                                <StatItem isDark={isDark} icon={<Icons.BrainCircuit />} label="AI Integration" value="RAG & LLMs" />
+                                <StatItem isDark={isDark} icon={<Icons.Server />} label="Cloud Native" value="AWS & Docker" />
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* TECH STACK (White BG in Day Mode) */}
+                    <section id="about" className={`py-24 relative z-10 transition-colors duration-500 ${isDark ? 'bg-[#0b1121]' : 'bg-white'}`}>
+                        <div className="max-w-7xl mx-auto px-6">
+                            <SectionHeader title="Technical Expertise" subtitle="My Arsenal" isDark={isDark} />
+                            
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                <SpotlightCard isDark={isDark} className="p-8 group">
+                                    <div className="w-12 h-12 rounded-lg bg-cyan-500/10 flex items-center justify-center text-cyan-500 mb-6 group-hover:scale-110 transition-transform">
+                                        <Icons.Terminal size={28} />
                                     </div>
-                                    
-                                    <span>Java</span> <span class="pull-right">85%</span>
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0"
-                                            aria-valuemax="100"></div>
+                                    <h3 className={`text-xl font-bold mb-4 ${isDark ? 'text-white' : 'text-slate-900'}`}>Backend Engineering</h3>
+                                    <p className={`text-sm leading-relaxed mb-6 ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
+                                        Architecting robust REST APIs and microservices using Laravel, Python (Django/FastAPI), and Spring Boot.
+                                    </p>
+                                    <SkillList skills={['Laravel', 'Python', 'Django', 'Spring Boot', 'REST API']} isDark={isDark} />
+                                </SpotlightCard>
+
+                                <SpotlightCard isDark={isDark} className="p-8 group">
+                                    <div className="w-12 h-12 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-500 mb-6 group-hover:scale-110 transition-transform">
+                                        <Icons.BrainCircuit size={28} />
                                     </div>
-                                    
-                                    <span>SQL</span> <span class="pull-right">90%</span>
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0"
-                                            aria-valuemax="100"></div>
+                                    <h3 className={`text-xl font-bold mb-4 ${isDark ? 'text-white' : 'text-slate-900'}`}>Gen-AI & ML</h3>
+                                    <p className={`text-sm leading-relaxed mb-6 ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
+                                        Building intelligent agents and RAG pipelines using LangChain, OpenAI, and Vector Databases (FAISS/Pinecone).
+                                    </p>
+                                    <SkillList skills={['LangChain', 'RAG', 'OpenAI', 'Vector DB', 'Prompt Eng.']} isDark={isDark} />
+                                </SpotlightCard>
+
+                                <SpotlightCard isDark={isDark} className="p-8 group">
+                                    <div className="w-12 h-12 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-500 mb-6 group-hover:scale-110 transition-transform">
+                                        <Icons.Server size={28} />
                                     </div>
+                                    <h3 className={`text-xl font-bold mb-4 ${isDark ? 'text-white' : 'text-slate-900'}`}>Cloud Infrastructure</h3>
+                                    <p className={`text-sm leading-relaxed mb-6 ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
+                                        Deploying scalable serverless applications on AWS using Lambda, Athena, Glue, and Docker containers.
+                                    </p>
+                                    <SkillList skills={['AWS S3', 'Athena', 'Glue', 'Docker', 'Jenkins']} isDark={isDark} />
+                                </SpotlightCard>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* SERVICES (Gray BG in Day Mode + Grid) */}
+                    <section id="services" className={`py-24 relative z-10 transition-colors duration-500 ${isDark ? 'bg-slate-900/30' : 'bg-slate-50 relative'}`}>
+                        {!isDark && <div className="absolute inset-0 bg-grid-slate opacity-[0.5] pointer-events-none"></div>}
+                        <div className="max-w-7xl mx-auto px-6 relative z-10">
+                            <SectionHeader title="What I Deliver" subtitle="Services" isDark={isDark} />
+                            
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                                <ServiceItem 
+                                    isDark={isDark} 
+                                    icon={<Icons.Database />}
+                                    title="RAG Knowledge Systems"
+                                    desc="Secure chatbots that query your internal company data instantly."
+                                />
+                                <ServiceItem 
+                                    isDark={isDark} 
+                                    icon={<Icons.Code2 />}
+                                    title="SaaS MVP Development"
+                                    desc="Rapid end-to-end development of scalable SaaS products."
+                                />
+                                <ServiceItem 
+                                    isDark={isDark} 
+                                    icon={<Icons.Cpu />}
+                                    title="Enterprise Automation"
+                                    desc="Python scripting and agents to automate complex workflows."
+                                />
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* EXPERIENCE TIMELINE (White BG in Day Mode) */}
+                    <section id="experience" className={`py-24 relative z-10 transition-colors duration-500 ${isDark ? 'bg-[#0b1121]' : 'bg-white'}`}>
+                        <div className="max-w-5xl mx-auto px-6">
+                            <SectionHeader title="Professional Journey" subtitle="Experience" isDark={isDark} />
+                            
+                            <div className="space-y-12">
+                                <TimelineBlock 
+                                    isDark={isDark}
+                                    date="Mar 2025 - Present"
+                                    role="Sr. Associate - Software Engineer"
+                                    company="Unthinkable Solutions"
+                                    desc="Leading Gen-AI initiatives. Built a RAG chatbot for internal knowledge management. Optimized MySQL queries reducing load times from 30s to 3s for 80M+ row datasets."
+                                    tags={['Leadership', 'RAG', 'MySQL Optimization']}
+                                />
+                                <TimelineBlock 
+                                    isDark={isDark}
+                                    date="Dec 2022 - Mar 2025"
+                                    role="Associate - Software Engineer"
+                                    company="Unthinkable Solutions"
+                                    desc="Developed analytics dashboards using Highcharts. Built robust REST APIs using Laravel. Managed AWS infrastructure (Athena, Glue) for data processing."
+                                    tags={['Laravel', 'AWS Athena', 'Highcharts']}
+                                />
+                                <TimelineBlock 
+                                    isDark={isDark}
+                                    date="Dec 2020 - Dec 2022"
+                                    role="Jr. Associate - Software Engineer"
+                                    company="Unthinkable Solutions"
+                                    desc="Integrated ML models into Android apps. Built Spring Boot APIs for face detection validation."
+                                    tags={['Java', 'Spring Boot', 'Android']}
+                                />
+                                <TimelineBlock 
+                                    isDark={isDark}
+                                    date="Jul 2020 - Dec 2020"
+                                    role="Android Intern"
+                                    company="MANI RBI Project"
+                                    desc="Enhanced accessibility for the visually impaired in the RBI MANI currency detection app."
+                                    tags={['Kotlin', 'Accessibility', 'ML Kit']}
+                                />
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* FEATURED PROJECTS (Gray BG in Day Mode) */}
+                    <section id="projects" className={`py-24 relative z-10 transition-colors duration-500 ${isDark ? 'bg-slate-900/30' : 'bg-slate-50'}`}>
+                         {!isDark && <div className="absolute inset-0 bg-grid-slate opacity-[0.5] pointer-events-none"></div>}
+                        <div className="max-w-7xl mx-auto px-6 relative z-10">
+                            <SectionHeader title="Featured Projects" subtitle="Selected Works" isDark={isDark} />
+                            
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <ProjectCard 
+                                    isDark={isDark}
+                                    title="RAG Knowledge Chatbot"
+                                    type="Internal Tool"
+                                    desc="A context-aware Q&A bot using LangChain and Vector DBs to answer employee queries from internal docs."
+                                    stack={['LangChain', 'Python', 'React']}
+                                    link="https://pollsmaster.com"
+                                    repoLink="https://github.com/abdulajij"
+                                />
+                                <ProjectCard 
+                                    isDark={isDark}
+                                    title="Freight Rate Calculator"
+                                    type="Drewry SaaS"
+                                    desc="Complex logistics pricing platform processing millions of records via AWS Athena & Glue."
+                                    stack={['Laravel', 'AWS Athena', 'S3']}
+                                    link="https://pollsmaster.com"
+                                    privateRepo
+                                />
+                                <ProjectCard 
+                                    isDark={isDark}
+                                    title="Bridge to India"
+                                    type="Analytics Platform"
+                                    desc="Renewable energy consultancy platform with advanced data visualization and scalable Django backend."
+                                    stack={['Django', 'Python', 'Analytics']}
+                                    link="https://pollsmaster.com"
+                                    privateRepo
+                                />
+                                <ProjectCard 
+                                    isDark={isDark}
+                                    title="RBI MANI App"
+                                    type="Govt Application"
+                                    desc="Official currency detection app for visually impaired users. Implemented ML-based recognition."
+                                    stack={['Android', 'ML Kit', 'Kotlin']}
+                                    link="https://pollsmaster.com"
+                                    privateRepo
+                                />
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* GITHUB STATS */}
+                    <section className={`py-16 border-y relative z-10 ${isDark ? 'bg-[#0b1121] border-white/5' : 'bg-white border-slate-200'}`}>
+                        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-8">
+                            <div className="flex items-center gap-4">
+                                <div className={`p-4 rounded-full ${isDark ? 'bg-white/5' : 'bg-slate-100 shadow-sm'}`}>
+                                    <Icons.Github size={32} />
+                                </div>
+                                <div>
+                                    <h3 className={`text-lg font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>Open Source Contributor</h3>
+                                    <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>Active contributions to the community.</p>
                                 </div>
                             </div>
+                            <div className="flex gap-6">
+                                <StatBox isDark={isDark} label="Repositories" value="20+" color="text-cyan-500" />
+                                <StatBox isDark={isDark} label="LeetCode" value="150+" color="text-green-500" />
+                            </div>
+                             <a href="https://github.com/abdulajij" target="_blank" rel="noreferrer" className={`flex items-center gap-2 text-sm font-semibold hover:underline ${isDark ? 'text-cyan-400' : 'text-cyan-600'}`}>
+                                Visit Profile <Icons.ExternalLink size={16} />
+                            </a>
+                        </div>
+                    </section>
+
+                    {/* CONTACT */}
+                    <section id="contact" className={`py-24 relative z-10 transition-colors duration-500 ${isDark ? 'bg-slate-900/30' : 'bg-slate-50'}`}>
+                         {!isDark && <div className="absolute inset-0 bg-grid-slate opacity-[0.5] pointer-events-none"></div>}
+                        <div className="max-w-3xl mx-auto px-6 relative z-10">
+                            <SectionHeader title="Let's Collaborate" subtitle="Contact" isDark={isDark} center />
+                            
+                            <SpotlightCard isDark={isDark} className="p-8 md:p-12 overflow-visible">
+                                <form onSubmit={handleSendMessage} className="space-y-6">
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <Input isDark={isDark} name="name" placeholder="Name" onChange={handleInputChange} />
+                                        <Input isDark={isDark} name="email" placeholder="Email" onChange={handleInputChange} />
+                                    </div>
+                                    <Input isDark={isDark} name="subject" placeholder="Subject" onChange={handleInputChange} />
+                                    <textarea 
+                                        name="message"
+                                        rows="4" 
+                                        placeholder="How can I help you?" 
+                                        onChange={handleInputChange}
+                                        className={`w-full px-5 py-4 rounded-xl outline-none focus:ring-2 focus:ring-cyan-500/50 transition-all resize-none ${
+                                            isDark 
+                                                ? 'bg-slate-950 border border-white/10 text-white placeholder-slate-600' 
+                                                : 'bg-white border border-slate-200 text-slate-900 placeholder-slate-400 shadow-sm'
+                                        }`}
+                                    ></textarea>
+                                    <button className="w-full py-4 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold tracking-wide shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/40 transition-all transform hover:-translate-y-1">
+                                        Send Message
+                                    </button>
+                                </form>
+
+                                <div className="mt-12 flex flex-col md:flex-row justify-center gap-6 items-center pt-8 border-t border-dashed border-gray-500/30">
+                                    <a href="mailto:ajij.bgt@gmail.com" className={`flex items-center gap-3 text-sm font-medium ${isDark ? 'text-slate-400 hover:text-white' : 'text-slate-600 hover:text-slate-900'}`}>
+                                        <Icons.Mail size={18} /> ajij.bgt@gmail.com
+                                    </a>
+                                    <a href="https://linkedin.com" target="_blank" className={`flex items-center gap-3 text-sm font-medium ${isDark ? 'text-slate-400 hover:text-white' : 'text-slate-600 hover:text-slate-900'}`}>
+                                        <Icons.Linkedin size={18} /> LinkedIn
+                                    </a>
+                                </div>
+                            </SpotlightCard>
+                        </div>
+                    </section>
+
+                    {/* FOOTER */}
+                    <footer className={`py-8 text-center text-xs font-medium tracking-wide ${isDark ? 'text-slate-600' : 'text-slate-500'}`}>
+                        <p>© 2025 Abdul Ajij Ansari. Engineered with React, Tailwind & Passion.</p>
+                    </footer>
+
+                </div>
+            );
+        };
+
+        // --- SUB-COMPONENTS ---
+        
+        const SectionHeader = ({ title, subtitle, isDark, center }) => (
+            <div className={`mb-16 ${center ? 'text-center' : ''}`}>
+                <span className={`text-cyan-500 font-mono text-sm tracking-wider uppercase mb-2 block`}>{subtitle}</span>
+                <h2 className={`text-3xl md:text-4xl font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>{title}</h2>
+            </div>
+        );
+
+        const StatItem = ({ isDark, icon, label, value }) => (
+            <div className="flex flex-col items-center gap-2">
+                <div className={`p-3 rounded-full mb-1 ${isDark ? 'bg-cyan-500/10 text-cyan-400' : 'bg-white text-cyan-600 shadow-sm border border-slate-100'}`}>
+                    {React.cloneElement(icon, { size: 24 })}
+                </div>
+                <div className={`text-2xl font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>{value}</div>
+                <div className={`text-xs font-medium uppercase tracking-wide ${isDark ? 'text-slate-500' : 'text-slate-500'}`}>{label}</div>
+            </div>
+        );
+
+        const SkillList = ({ skills, isDark }) => (
+            <div className="flex flex-wrap gap-2">
+                {skills.map(skill => (
+                    <span key={skill} className={`px-2.5 py-1 rounded-md text-xs font-medium border ${
+                        isDark ? 'bg-slate-800/50 border-white/5 text-slate-300' : 'bg-slate-50 border-slate-200 text-slate-600'
+                    }`}>
+                        {skill}
+                    </span>
+                ))}
+            </div>
+        );
+
+        const ServiceItem = ({ isDark, icon, title, desc }) => (
+            <div className={`p-6 rounded-2xl border transition-all hover:-translate-y-1 ${
+                isDark ? 'bg-slate-900/50 border-white/5 hover:bg-slate-800/50' : 'bg-white border-slate-200 light-card-shadow'
+            }`}>
+                <div className={`w-10 h-10 rounded-lg flex items-center justify-center mb-4 ${isDark ? 'bg-cyan-500/10 text-cyan-400' : 'bg-cyan-50 text-cyan-600'}`}>
+                    {React.cloneElement(icon, { size: 20 })}
+                </div>
+                <h3 className={`text-lg font-bold mb-2 ${isDark ? 'text-white' : 'text-slate-900'}`}>{title}</h3>
+                <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>{desc}</p>
+            </div>
+        );
+
+        const TimelineBlock = ({ isDark, date, role, company, desc, tags }) => (
+            <div className="relative pl-8 border-l border-slate-700/30">
+                <div className={`absolute -left-[5px] top-2 w-2.5 h-2.5 rounded-full ${isDark ? 'bg-cyan-500' : 'bg-cyan-600'} ring-4 ${isDark ? 'ring-[#0b1121]' : 'ring-white'}`}></div>
+                <span className={`text-xs font-mono mb-1 block ${isDark ? 'text-cyan-500' : 'text-cyan-600'}`}>{date}</span>
+                <h3 className={`text-xl font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>{role}</h3>
+                <div className={`text-sm font-medium mb-3 ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>{company}</div>
+                <p className={`text-sm leading-relaxed mb-4 ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>{desc}</p>
+                <div className="flex flex-wrap gap-2">
+                    {tags.map(tag => (
+                        <span key={tag} className={`text-[10px] px-2 py-0.5 rounded border uppercase tracking-wide ${isDark ? 'border-slate-700 text-slate-400' : 'border-slate-200 text-slate-500'}`}>
+                            {tag}
+                        </span>
+                    ))}
+                </div>
+            </div>
+        );
+
+        const ProjectCard = ({ isDark, title, type, desc, stack, link, repoLink, privateRepo }) => (
+            <SpotlightCard isDark={isDark} className="group flex flex-col h-full">
+                <div className={`h-full p-8 flex flex-col`}>
+                    <div className="flex justify-between items-start mb-6">
+                        <div>
+                            <span className={`text-xs font-bold uppercase tracking-wider mb-2 block ${isDark ? 'text-cyan-500' : 'text-cyan-600'}`}>{type}</span>
+                            <h3 className={`text-2xl font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>{title}</h3>
+                        </div>
+                        <div className="flex gap-2">
+                             <a href={link} target="_blank" className={`p-2 rounded-full transition-colors ${isDark ? 'bg-white/5 hover:bg-white/10 text-white' : 'bg-slate-100 hover:bg-slate-200 text-slate-900'}`}>
+                                <Icons.ExternalLink size={18} />
+                            </a>
+                            {privateRepo ? (
+                                <div className={`p-2 rounded-full opacity-30 cursor-not-allowed ${isDark ? 'bg-white/5 text-white' : 'bg-slate-100 text-slate-900'}`}>
+                                    <Icons.Lock size={18} />
+                                </div>
+                            ) : (
+                                <a href={repoLink} target="_blank" className={`p-2 rounded-full transition-colors ${isDark ? 'bg-white/5 hover:bg-white/10 text-white' : 'bg-slate-100 hover:bg-slate-200 text-slate-900'}`}>
+                                    <Icons.Github size={18} />
+                                </a>
+                            )}
                         </div>
                     </div>
                     
-                    <div class="col-md-6 col-lg-7 pl-lg-5 pb-5">
-                        <div class="row justify-content-start pb-3">
-                            <div class="col-md-12 heading-section ftco-animate">
-                                
-                                <h1 class="big">About</h1>
-                                <h2 class="mb-4">About Me</h2>
-                                
-                                <p>I have 4.5 years of experience in backend, frontend, and Android development, 
-                                    with expertise in designing and developing applications across various sectors, 
-                                    including the Health Sector, Transportation Sector, and Machine Learning for Image Processing. 
-                                    I have worked extensively with Laravel and Django for backend development, as well as developed efficient frontends and robust Android applications. 
-                                    My experience spans multiple stages of development, from backend design to frontend and mobile application development.</p>
-                                <ul class="about-info mt-4 px-md-0 px-2">
-                                    <li class="d-flex"><span>Profile:</span> <span>Web &amp; App Developer</span></li>
-                                    <li class="d-flex"><span>Domain:</span> <span>Transportation, Ecommerce &amp; Health</span></li>
-                                    <li class="d-flex"><span>Education:</span> <span>Bachelor of Technology (CSE)</span></li>
-                                    <li class="d-flex"><span>Language:</span> <span>Python, JAVA, &amp; PHP</span></li>
-                                    <li class="d-flex"><span>Tools:</span> <span>VS code, Android Studio, Github, BitBucket, Postman, Jenkins &amp; Airflow</span></li>
-                                    <li class="d-flex"><span>Other Skills:</span> <span>Django, Springboot, Laravel, Databases, Cloud, Git, &amp; JIRA</span></li>
-                                    <li class="d-flex"><span>Interest:</span> <span>Traveling, Travel Photography, Playing Cricket</span></li>
-                                    
-                                </ul>
-                            </div>
-                        </div>
-
-
-                        <div class="counter-wrap ftco-animate d-flex mt-md-3">
-                            <div class="text">
-                                <p class="mb-4">
-                                    <span class="number" data-number="6">0</span> <span>+</span>
-                                    <span>&nbsp; Projects completed</span>
-                                </p>
-                                <p><a href="https://www.linkedin.com/in/abdul-ajij-ansari-0967a120a/" class="btn btn-primary py-3 px-3">LinkedIn</a></p>
-                            </div>
-                        </div>
+                    <p className={`text-sm leading-relaxed mb-8 flex-grow ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>{desc}</p>
+                    
+                    <div className="flex flex-wrap gap-2 mt-auto">
+                        {stack.map(tech => (
+                            <span key={tech} className={`px-3 py-1 rounded-full text-xs font-medium ${isDark ? 'bg-cyan-900/20 text-cyan-300' : 'bg-cyan-50 text-cyan-700'}`}>
+                                {tech}
+                            </span>
+                        ))}
                     </div>
                 </div>
+            </SpotlightCard>
+        );
+
+        const StatBox = ({ isDark, label, value, color }) => (
+            <div className={`px-6 py-3 rounded-xl border flex flex-col items-center ${isDark ? 'border-white/10 bg-white/5' : 'border-slate-200 bg-white'}`}>
+                <span className={`text-2xl font-bold ${color}`}>{value}</span>
+                <span className={`text-[10px] uppercase tracking-wider ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>{label}</span>
             </div>
-        </div>
-    </section>
+        );
 
-    <section class="ftco-section ftco-no-pb" id="resume-section">
-        <div class="container">
-            <div class="row justify-content-center pb-5">
-          <div class="col-md-10 heading-section text-center ftco-animate">
-            <h1 class="big big-2">Resume</h1>
-            <h2 class="mb-4">Resume</h2>
-            <p>I have 4.5 years of experience in backend, frontend, and Android development, 
-                with expertise in designing and developing applications across various sectors, 
-                including the Health Sector, Transportation Sector, and Machine Learning for Image Processing. 
-                I have worked extensively with Laravel and Django for backend development, as well as developed efficient frontends and robust Android applications. 
-                My experience spans multiple stages of development, from backend design to frontend and mobile application development.</p>
-          </div>
-        </div>
+        const Input = ({ isDark, name, placeholder, onChange }) => (
+            <input 
+                type="text" 
+                name={name}
+                placeholder={placeholder}
+                onChange={onChange}
+                className={`w-full px-5 py-4 rounded-xl outline-none focus:ring-2 focus:ring-cyan-500/50 transition-all ${
+                    isDark 
+                        ? 'bg-slate-950 border border-white/10 text-white placeholder-slate-600' 
+                        : 'bg-white border border-slate-200 text-slate-900 placeholder-slate-400 shadow-sm'
+                }`} 
+            />
+        );
 
-        <div class="row">
-            <h1 class="big-4">Experience</h1>
-            <div class="underline"></div>
-        </div>
-        <br>
-        
-        <div class="row">
-
-                <div class="col-md-6">
-                    <div class="resume-wrap ftco-animate">
-                        <span class="date">Dec 2022 - Present</span>
-                        <h2>Associate Software Engineer</h2>
-                        <span class="position">Unthinkable Solutions, Gurugram</span>
-                            <ul>
-                                <li>Led the migration of RDS queries to AWS Athena by connecting S3 with the Glue Data Catalog and using Glue jobs, enhancing availability and significantly reducing operational costs.</li>
-                                <li>Reduced the cost of updating data service by more than 80% by devising an automated system that identified and disabled reports with no usage or empty data and updated data using a bulk updation approach.</li>
-                                <li>Reduced the execution time from 30 seconds to 10 milliseconds by optimizing MySQL queries for over 80 million rows in a table.</li>
-                                <li>LARAVEL, PHP, MySQL, ORM, HTML, CSS, JQuery, AWS Cloud, AWS Athena, AWS Glow, AWS S3, Python,
-                                    Airflow, HighChart, C3 charts, Jenkins, Postman, Code commit, Agile.</li>
-                            </ul>
-                    </div>
-
-                </div>
-                <div class="col-md-6">
-                    <div class="resume-wrap ftco-animate">
-                        <span class="date">Jul 2020 - Dec 2022</span>
-                        <h2>Jr. Associate Software Engineer</h2>
-                        <span class="position">Unthinkable Solutions, Gurugram</span>
-                            <ul>
-                                <li>Integrated Indian regional languages in an Android application to recognize the Indian currency and increased active users by 50%.</li>
-                                <li>Created an app to automate taking pictures on an Android device and uploading them to S3, allowing the ML model
-                                    to directly retrieve the images from the S3 bucket and start operations on them.</li>
-                                <li>Created a Rest API to check if an image is face-centered using Spring Boot and Maven by integrating a C++ library.</li>
-                                <li>Reduced the execution time from 30 seconds to 10 milliseconds by optimizing MySQL queries for over 80 million rows in a table.</li>
-                                <li>JAVA, Spring Boot, Maven, S3, MySQL, Android, XML, Kotlin, Speech Recognition, Image processing, GIT, Bitbucket, Android, Github.</li>
-                            </ul>
-                    </div>
-
-                </div>
-
-            </div>
-
-        <br>
-        <br>
-
-        <div class="row">
-            <h1 class="big-4">Education</h1>
-            <div class="underline"></div>
-        </div>
-        <br>
-        
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="resume-wrap ftco-animate">
-                        <span class="date">2016-2020</span>
-                        <h2>Bachelor of Technology</h2>
-                        <span class="position">Galgotias college of engineering and technology, Greater Noida</span>
-                        <p class="mt-4">Grade: 8.3 CGPA</p>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="resume-wrap ftco-animate">
-                        <span class="date">2010-2012</span>
-                        <h2>Higher Secondary School</h2>
-                        <span class="position">Government Intermediate college, Deoria, Uttar Pradesh</span>
-                        <p class="mt-4">Grade: 82.3%</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row justify-content-center mt-5">
-                <div class="col-md-6 text-center ftco-animate">
-                    <p><a href="https://drive.google.com/file/d/1xwJTL_mrBV8y4Zl9O8rn9R5rgjenBGpR/view?usp=drive_link" class="btn btn-primary py-4 px-5">Download CV</a></p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="ftco-section" id="project-section">
-      <div class="container">
-        <div class="row justify-content-center mb-5 pb-5">
-          <div class="col-md-7 heading-section text-center ftco-animate">
-            <h1 class="big big-2">Projects</h1>
-            <h2 class="mb-4">Projects</h2>
-            <p>Below are the projects showcasing expertise in Backend Development, Android Development, Data Processing, and Cloud Services.</p>
-          </div>
-        </div>
-        <div class="row d-flex">
-          <div class="col-md-4 d-flex ftco-animate">
-            <div class="blog-entry justify-content-end">
-              <a href="https://containerfreight.drewry.co.uk/" class="block-20 zoom-effect" style="background-image: url('images/proj_1.jpg');">
-              </a>
-              <div class="text mt-3 float-right d-block">
-
-                <h3 class="heading"><a href="https://containerfreight.drewry.co.uk/">FIP (Freignt Insight Portal) </a></h3>
-                <p>Led "The Drewry Project," a Laravel web app for freight rate calculation. Improved user
-                    experience by integrating new features and addressing bug fixes. Utilized AWS Athena and Glue for querying S3,
-                    and developed a custom dashboard for data and chart visualization, leveraging cloud and containerization
-                    technologies.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 d-flex ftco-animate">
-            <div class="blog-entry justify-content-end">
-              <a href="https://play.google.com/store/apps/dev?id=5399150743825528306&hl=en_IN" class="block-20 zoom-effect" style="background-image: url('images/proj_2.jpg');">
-              </a>
-              <div class="text mt-3 float-right d-block">
-
-                <h3 class="heading"><a href="https://play.google.com/store/apps/dev?id=5399150743825528306&hl=en_IN">ALVIE HEALTH LIMITED</a></h3>
-                <p>Developed unit tests for existing classes, increasing test coverage from 0% to 45%, and significantly enhanced the code quality of the application.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 d-flex ftco-animate">
-            <div class="blog-entry">
-              <a href="https://play.google.com/store/apps/details?id=com.rbi.mani" class="block-20 zoom-effect" style="background-image: url('images/proj_3.jpg');">
-              </a>
-              <div class="text mt-3 float-right d-block">
-
-                <h3 class="heading"><a href="https://play.google.com/store/apps/details?id=com.rbi.mani">MANI Mobile Application</a></h3>
-                <p>Integrated support for 12 regional languages, resulting in a 50% increase in active users. This enhancement was particularly beneficial for Indian rural regions.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <br>
-        <!-- added justify-content-center to center align the last two projects -->
-        <!-- <div class="row d-flex justify-content-center">  
-            <div class="col-md-4 d-flex ftco-animate">
-                <div class="blog-entry justify-content-end">
-                <a href="https://github.com/rishabhnmishra/sales_forecasting/tree/main" class="block-20 zoom-effect" style="background-image: url('images/proj_4.jpg');">
-                </a>
-                <div class="text mt-3 float-right d-block">
-  
-                  <h3 class="heading"><a href="https://github.com/rishabhnmishra/sales_forecasting/tree/main">Sales Forecast- Time Series Forecasting</a></h3>
-                  <p>Used multiple machine learning models to forecast sales (retail store) and performed time series analysis.</p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4 d-flex ftco-animate">
-                <div class="blog-entry justify-content-end">
-                <a href="https://github.com/rishabhnmishra/customer_segmentation/blob/main/Customer_Segmentation-final.ipynb" class="block-20 zoom-effect" style="background-image: url('images/proj_5.jpg');">
-                </a>
-                <div class="text mt-3 float-right d-block">
-  
-                  <h3 class="heading"><a href="https://github.com/rishabhnmishra/customer_segmentation/blob/main/Customer_Segmentation-final.ipynb">Customer Segmentation using clustering model</a></h3>
-                  <p>Developed a ML model to give various recommendations of financial products &amp; services on target customer groups.</p>
-                </div>
-              </div>
-            </div>
-         </div> -->
-      </div>
-    </section>
-
-    <section class="ftco-section ftco-no-pt ftco-no-pb ftco-counter img" id="section-counter">
-      <div class="container">
-        <div class="row d-md-flex align-items-center">
-          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18">
-              <div class="text">
-                <strong class="number">5</strong>
-                <span>Achievements</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18">
-              <div class="text">
-                <strong class="number">6</strong>
-                <span>Projects</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18">
-              <div class="text">
-                <strong class="number">10</strong>
-                <span>Certifications</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-      <div class="ftco-section ftco-hireme img margin-top" style="background-image: url(images/bg_1.jpg)">
-                <div class="row justify-content-center">
-                    <div class="col-md-7 ftco-animate text-center">
-                        <h2>More projects on<span> Github  </span> </h2>
-                        <div class="heading"> <h4> I love to solve business problems &amp; uncover hidden data stories </h4>
-                        <br>
-                        <p><a href="https://github.com/azeiee777" class="btn btn-primary py-3 px-5">GitHub</a></p>
-                        </div>
-                    </div>
-                </div>
-        </div>
-    </section>
-
-    <section class="ftco-section contact-section ftco-no-pb" id="contact-section">
-      <div class="container">
-        <div class="row justify-content-center mb-5 pb-3">
-          <div class="col-md-7 heading-section text-center ftco-animate">
-            <h1 class="big big-2">Contact</h1>
-            <h2 class="mb-4">Contact Me</h2>
-            <p>Below are the details to reach out to me!</p>
-          </div>
-        </div>
-
-        <div class="row d-flex contact-info mb-5">
-          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-            <div class="align-self-stretch box p-4 text-center">
-                <div class="icon d-flex align-items-center justify-content-center">
-                    <span class="icon-map-signs"></span>
-                </div>
-                <h3 class="mb-4">Address</h3>
-                <p>Gurugram, India</p>
-              </div>
-          </div>
-          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-            <div class="align-self-stretch box p-4 text-center">
-                <div class="icon d-flex align-items-center justify-content-center">
-                    <span class="icon-phone2"></span>
-                </div>
-                <h3 class="mb-4">Contact Number</h3>
-                <p><a href="tel://9670702235">+ 91 967 0702 235</a></p>
-              </div>
-          </div>
-          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-            <div class="align-self-stretch box p-4 text-center">
-                <div class="icon d-flex align-items-center justify-content-center">
-                    <span class="icon-paper-plane"></span>
-                </div>
-                <h3 class="mb-4">Email Address</h3>
-                <p><a href="mailto:me@abdulajij.in">me@abdulajij.in</a></p>
-              </div>
-          </div>
-          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-            <div class="align-self-stretch box p-4 text-center">
-                <div class="icon d-flex align-items-center justify-content-center">
-                    <span class="icon-globe"></span>
-                </div>
-                <h3 class="mb-4">Download Resume</h3>
-                <p><a href="https://drive.google.com/file/d/1xwJTL_mrBV8y4Zl9O8rn9R5rgjenBGpR/view?usp=drive_link">Download</a></p>
-              </div>
-          </div>
-
-          <div class="container">
-            <br>
-            <br>
-            <div class="row justify-content-center">
-                <div class="col-md-7 ftco-animate text-center">
-                    <h2>Have a<span> Question?  </span> <a href="https://forms.gle/YqziA7U95W15GLpb7" class="btn btn-primary py-3 px-5">Click Here</a> </h2>
-                </div>
-            </div>
-                <br>
-                    <ul class="ftco-footer-social list-unstyled d-flex justify-content-center align-items-center mb-0">
-                      <li class="ftco-animate normal-txt">Find me on  </li>
-                      <li class="ftco-animate"><a href="https://www.youtube.com/@azeiee"><span class="icon-youtube"></span></a></li>
-                      <li class="ftco-animate"><a href="https://www.linkedin.com/in/abdul-ajij-ansari-0967a120a/"><span class="icon-linkedin"></span></a></li>  
-                      <li class="ftco-animate"><a href="https://x.com/iamazeiee"><span class="icon-twitter"></span></a></li>
-                      <li class="ftco-animate"><a href="https://www.instagram.com/azeiee"><span class="icon-instagram"></span></a></li>
-                    </ul>
-                <br>
-          </div>
-        </div>
-     </div>
-    </section>
-
-    <footer class="ftco-footer ftco-section">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12 text-center">
-  
-              <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Aziz Traders
-    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-            </div>
-          </div>
-        </div>
-    </footer>
-
-  <!-- loader -->
-  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
-
-  <script src="js/jquery.min.js"></script>
-  <script src="js/jquery-migrate-3.0.1.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/jquery.easing.1.3.js"></script>
-  <script src="js/jquery.waypoints.min.js"></script>
-  <script src="js/jquery.stellar.min.js"></script>
-  <script src="js/owl.carousel.min.js"></script>
-  <script src="js/jquery.magnific-popup.min.js"></script>
-  <script src="js/aos.js"></script>
-  <script src="js/jquery.animateNumber.min.js"></script>
-  <script src="js/scrollax.min.js"></script>
-  
-  <script src="js/main.js"></script>
-    
-  </body>
+        // --- RENDER ---
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<Portfolio />);
+    </script>
+</body>
 </html>
